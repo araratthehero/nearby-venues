@@ -13,7 +13,7 @@ Architecture
 ===========
 As Android apps grow in size, it's important to define an architecture that allows the app to scale, increases the app's robustness, and makes the app easier to test. For that purpose I used [Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
-![image](https://github.com/araratthehero/nearby-venues/assets/8832594/e46fdc1f-5ca2-426c-94e3-bd9b389cbf84)
+![image](https://github.com/araratthehero/nearby-venues/assets/8832594/1cbdbfcc-3ba6-4e08-adf1-9b34ce552dda)
 
 In Nearby venues app, I used the following layers:  
 * UI (:app) - Responsible to display application data on the screen  
@@ -27,8 +27,8 @@ UI
 <center>
   <table>
     <tr>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/320e1ce5-9dd7-4f39-900f-0087f1a97249"></td>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/c06a2b0f-bbcc-4108-8537-7d762db725f3"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/0339bdac-79c9-40a9-ba28-612fbb7244aa"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/80c667cc-c706-495e-9e4f-dd48051dfcbc"></td>
     </tr>
   </table>
 </center>
@@ -38,8 +38,8 @@ UI
 <center>
   <table>
     <tr>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/4edc34f6-162e-44da-9d22-af1c77ac16e4"></td>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/090e8b93-455a-4ecc-94ba-e3d75d818e90"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/255d9521-3118-48bc-ac8b-c46dc2e10e85"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/67ed853c-9bd0-43a8-97da-f83cb83f0036"></td>
     </tr>
   </table>
 </center>
@@ -48,7 +48,7 @@ UI
 
 If available, the app fetches the last known location of the user, otherwise the app requests the current location of the user before showing the results.
 
-https://github.com/araratthehero/nearby-venues/assets/8832594/ea245df6-6327-4df1-aa46-920167aa0766
+https://github.com/araratthehero/nearby-venues/assets/8832594/d7b1c531-7e22-4adb-8958-4bf20c741a60
 
 ### Errors
 
@@ -57,10 +57,10 @@ In case of errors, the app shows an error screen with an option to Retry loading
 <center>
   <table>
     <tr>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/5e7354f1-6fe2-4759-8d88-702f754d5b9a"></td>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/80898935-a4ce-464e-814e-5112a8cc2262"></td>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/c6866690-874c-4a2a-b6b4-5849f0fca6d3"></td>
-      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/2dbe1a9c-d141-452b-84f2-d42a77ed253c"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/b96ee390-d18e-4fe8-b8ae-993eb94c03b9"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/2cff80dd-d1be-445d-8566-37582400faa3"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/3e31d10b-2b51-4982-9ddd-f80f1cb26384"></td>
+      <td><img width="300" src="https://github.com/araratthehero/nearby-venues/assets/8832594/65496c93-3982-42c9-b046-bd23e449e4b9"></td>
     </tr>
   </table>
 </center>
