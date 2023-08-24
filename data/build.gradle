@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.mnatsakanyan.android.nearbyvenues.data'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        buildConfigField "String", "API_URL", "${API_URL}"
+        buildConfigField "String", "API_KEY", "${API_KEY}"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation libs.network.retrofit
+    implementation libs.network.gson.converter
+    implementation libs.network.okhttp
+    implementation libs.network.gson
+
+    implementation libs.google.location
+
+    implementation libs.di.hilt
+    kapt libs.di.compiler
+
+    testImplementation libs.test.junit
+    testImplementation libs.test.coroutines
+    testImplementation libs.test.mockito
+}

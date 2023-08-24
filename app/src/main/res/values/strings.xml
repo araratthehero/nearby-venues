@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Nearby Venues</string>
+
+    <string name="loading_text">Loading..</string>
+    <string name="error_retry">Retry</string>
+    <string name="permission_grant">Grant permission</string>
+
+    <string name="nearby_venues_title">Hey there,</string>
+    <string name="nearby_venues_sub_title">Here you can find some venues near you!</string>
+    <string name="nearby_venues_distance">%dm away</string>
+    <string name="nearby_venues_permission_description">We will need a location permission to process.</string>
+    <string name="nearby_venues_permission_denied_description">We see that you\'ve denied location permission. Please enable it in your phone settings and try again.</string>
+    <string name="nearby_venues_location_disabled">Please enable your location service from phone settings and try again.</string>
+
+    <string name="nearby_venues_loading_failed_text">We can not load any venues at the moment\nPlease check your internet connection.</string>
+    <string name="nearby_venues_empty_text">We are not able to find any venues nearby\nPlease try again when you are in another location.</string>
+</resources>

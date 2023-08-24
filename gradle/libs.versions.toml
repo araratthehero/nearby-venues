@@ -1,0 +1,91 @@
+[versions]
+# Compose
+composeVersion = "2023.08.00"
+composeCompilerVersion = "1.5.1"
+accompanistSystemuicontrollerVersion = "0.30.1"
+accompanistPermissionsVersion = "0.31.1-alpha"
+
+# Android X
+coreVersion = "1.10.1"
+navigationVersion = "2.6.0"
+hiltNavigationComposeVersion = "1.0.0"
+lifecycleComposeVersion = "2.6.1"
+testRunnerVersion = "1.5.2"
+
+# Google
+playServicesLocation = "21.0.1"
+
+# Kotlin
+kotlinVersion = "1.9.0"
+
+# DI
+hiltVersion = "2.47"
+
+# Network
+retrofitVersion = "2.9.0"
+okhttpVersion = "4.11.0"
+gsonVersion = "2.10.1"
+
+# Tests
+junitVersion = "4.13.2"
+coroutinesTestVersion = "1.7.3"
+mockitoVersion = "5.1.0"
+
+# Plugins
+androidGradleVersion = "8.1.0"
+kotlinAndroidVersion = "1.8.20"
+kotlinKaptVersion = "1.9.0"
+
+[libraries]
+agp = { module = "com.android.tools.build:gradle", version.ref = "androidGradleVersion" }
+
+# Compose
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeVersion" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material = { module = "androidx.compose.material3:material3" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontrollerVersion" }
+compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissionsVersion" }
+
+# Android X
+x-core = { module = "androidx.core:core-ktx", version.ref = "coreVersion" }
+x-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationVersion" }
+x-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
+x-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleComposeVersion" }
+x-test-runner = { module = "androidx.test:runner", version.ref = "testRunnerVersion" }
+
+# Google
+google-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+
+# Kotlin
+kt-classpath = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+kt-std-lib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinVersion" }
+
+# DI
+di-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+di-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
+di-classpath = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
+
+# Network
+network-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+network-gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }
+network-okhttp = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttpVersion" }
+network-gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }
+
+# Tests
+test-junit = { module = "junit:junit", version.ref = "junitVersion" }
+test-junit-compose = { module = "androidx.compose.ui:ui-test-junit4" }
+test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+test-kotlin = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlinVersion" }
+test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesTestVersion" }
+test-mockito = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoVersion" }
+test-hilt = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltVersion" }
+test-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradleVersion" }
+android-library = { id = "com.android.library", version.ref = "androidGradleVersion" }
+android-settings = { id = "com.android.settings", version.ref = "androidGradleVersion" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroidVersion" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinKaptVersion" }

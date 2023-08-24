@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.mnatsakanyan.android.nearbyvenues'
+
+    defaultConfig {
+        // Added as a workaround for https://issuetracker.google.com/issues/295457468
+        configurations.configureEach {
+            resolutionStrategy {
+                force("androidx.emoji2:emoji2-views-helper:1.3.0")
+                force("androidx.emoji2:emoji2:1.3.0")
+            }
+        }
+        applicationId "com.mnatsakanyan.android.nearbyvenues"
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "com.mnatsakanyan.android.nearbyvenues.VenuesTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
+    }
+}
+
+dependencies {
+    implementation project(":domain")
+    implementation project(":data")
+
+    implementation libs.x.core
+    implementation libs.x.navigation.compose
+    implementation libs.x.hilt.navigation.compose
+    implementation libs.x.lifecycle.compose
+
+    implementation libs.google.location
+
+    implementation platform(libs.compose.bom)
+
+    implementation libs.compose.foundation
+    implementation libs.compose.material
+    implementation libs.compose.ui
+    implementation libs.compose.ui.tooling
+    implementation libs.compose.accompanist.systemuicontroller
+    implementation libs.compose.accompanist.permissions
+
+    implementation libs.di.hilt
+    kapt libs.di.compiler
+
+    testImplementation libs.kt.std.lib
+    testImplementation libs.test.junit
+    testImplementation libs.test.kotlin
+    testImplementation libs.test.coroutines
+
+    debugImplementation libs.test.compose.manifest
+
+    androidTestImplementation platform(libs.compose.bom)
+    androidTestImplementation libs.x.test.runner
+    androidTestImplementation libs.test.junit.compose
+    androidTestImplementation libs.x.hilt.navigation.compose
+    androidTestImplementation libs.test.hilt
+    kaptAndroidTest libs.test.hilt.compiler
+}
