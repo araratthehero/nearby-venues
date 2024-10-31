@@ -1,12 +1,14 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.kapt'
-    id 'com.google.dagger.hilt.android'
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace 'com.mnatsakanyan.android.nearbyvenues'
+    compileSdk libs.versions.compile.sdk.get().toInteger()
 
     defaultConfig {
         // Added as a workaround for https://issuetracker.google.com/issues/295457468
@@ -19,6 +21,9 @@ android {
         applicationId "com.mnatsakanyan.android.nearbyvenues"
         versionCode 1
         versionName "1.0.0"
+
+        minSdk libs.versions.min.sdk.get().toInteger()
+        targetSdk libs.versions.target.sdk.get().toInteger()
 
         testInstrumentationRunner "com.mnatsakanyan.android.nearbyvenues.VenuesTestRunner"
     }
@@ -37,10 +42,6 @@ android {
 
     buildFeatures {
         compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
     }
 }
 

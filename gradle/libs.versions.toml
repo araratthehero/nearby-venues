@@ -1,40 +1,42 @@
 [versions]
+# SDK
+compile-sdk = "35"
+target-sdk = "35"
+min-sdk = "26"
+
 # Compose
-composeVersion = "2023.08.00"
-composeCompilerVersion = "1.5.1"
-accompanistSystemuicontrollerVersion = "0.30.1"
-accompanistPermissionsVersion = "0.31.1-alpha"
+composeVersion = "2024.10.01"
+accompanistSystemuicontrollerVersion = "0.36.0"
+accompanistPermissionsVersion = "0.36.0"
 
 # Android X
-coreVersion = "1.10.1"
-navigationVersion = "2.6.0"
-hiltNavigationComposeVersion = "1.0.0"
-lifecycleComposeVersion = "2.6.1"
-testRunnerVersion = "1.5.2"
+coreVersion = "1.15.0"
+navigationVersion = "2.8.3"
+hiltNavigationComposeVersion = "1.2.0"
+lifecycleComposeVersion = "2.8.7"
+testRunnerVersion = "1.6.2"
 
 # Google
-playServicesLocation = "21.0.1"
+playServicesLocation = "21.3.0"
 
 # Kotlin
-kotlinVersion = "1.9.0"
+kotlinVersion = "2.0.21"
 
 # DI
-hiltVersion = "2.47"
+hiltVersion = "2.52"
 
 # Network
-retrofitVersion = "2.9.0"
-okhttpVersion = "4.11.0"
+retrofitVersion = "2.11.0"
+okhttpVersion = "4.12.0"
 gsonVersion = "2.10.1"
 
 # Tests
 junitVersion = "4.13.2"
-coroutinesTestVersion = "1.7.3"
-mockitoVersion = "5.1.0"
+coroutinesTestVersion = "1.9.0"
+mockitoVersion = "5.4.0"
 
 # Plugins
 androidGradleVersion = "8.7.1"
-kotlinAndroidVersion = "1.8.20"
-kotlinKaptVersion = "1.9.0"
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "androidGradleVersion" }
@@ -84,8 +86,9 @@ test-hilt = { module = "com.google.dagger:hilt-android-testing", version.ref = "
 test-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "androidGradleVersion" }
-android-library = { id = "com.android.library", version.ref = "androidGradleVersion" }
-android-settings = { id = "com.android.settings", version.ref = "androidGradleVersion" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinAndroidVersion" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinKaptVersion" }
+android-application = { id = "com.android.application"}
+android-library = { id = "com.android.library"}
+kotlin-android = { id = "org.jetbrains.kotlin.android"}
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt"}
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
+dagger-hilt = { id = "com.google.dagger.hilt.android"}

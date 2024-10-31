@@ -1,12 +1,13 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.kapt'
-    id 'com.google.dagger.hilt.android'
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
     namespace 'com.mnatsakanyan.android.nearbyvenues.data'
+    compileSdk libs.versions.compile.sdk.get().toInteger()
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -16,6 +17,9 @@ android {
     defaultConfig {
         buildConfigField "String", "API_URL", "${API_URL}"
         buildConfigField "String", "API_KEY", "${API_KEY}"
+
+        minSdk libs.versions.min.sdk.get().toInteger()
+        targetSdk libs.versions.target.sdk.get().toInteger()
     }
 
     buildFeatures {
