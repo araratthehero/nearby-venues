@@ -32,7 +32,7 @@ coroutinesTestVersion = "1.7.3"
 mockitoVersion = "5.1.0"
 
 # Plugins
-androidGradleVersion = "8.1.0"
+androidGradleVersion = "8.7.1"
 kotlinAndroidVersion = "1.8.20"
 kotlinKaptVersion = "1.9.0"
 
