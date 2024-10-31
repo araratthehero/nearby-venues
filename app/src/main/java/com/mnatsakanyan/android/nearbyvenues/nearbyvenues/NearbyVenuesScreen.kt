@@ -18,6 +18,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.mnatsakanyan.android.nearbyvenues.R
 import com.mnatsakanyan.android.nearbyvenues.compose.common.ErrorScreen
 import com.mnatsakanyan.android.nearbyvenues.compose.common.LoadingScreen
@@ -32,96 +34,96 @@ import com.mnatsakanyan.android.nearbyvenues.nearbyvenues.NearbyVenuesUiState.Pe
 import com.mnatsakanyan.android.nearbyvenues.nearbyvenues.NearbyVenuesUiState.Venues
 import com.mnatsakanyan.android.nearbyvenues.nearbyvenues.compose.EmptyScreen
 import com.mnatsakanyan.android.nearbyvenues.nearbyvenues.compose.VenueListItem
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberMultiplePermissionsState
 
 @Composable
 internal fun NearbyVenuesScreen(
-        modifier: Modifier = Modifier,
-        viewModel: NearbyVenuesViewModel = hiltViewModel()
+    modifier: Modifier = Modifier,
+    viewModel: NearbyVenuesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     NearbyVenuesScreen(
-            modifier = modifier,
-            uiState = uiState,
-            onRetryButtonClick = viewModel::onRefresh,
-            onRefreshButtonClick = viewModel::onRefresh,
-            onPermissionGranted = viewModel::onRefresh
+        modifier = modifier,
+        uiState = uiState,
+        onRetryButtonClick = viewModel::onRefresh,
+        onRefreshButtonClick = viewModel::onRefresh,
+        onPermissionGranted = viewModel::onRefresh
     )
 }
 
 @Composable
 internal fun NearbyVenuesScreen(
-        modifier: Modifier = Modifier,
-        uiState: NearbyVenuesUiState,
-        onRetryButtonClick: () -> Unit,
-        onRefreshButtonClick: () -> Unit,
-        onPermissionGranted: () -> Unit
+    modifier: Modifier = Modifier,
+    uiState: NearbyVenuesUiState,
+    onRetryButtonClick: () -> Unit,
+    onRefreshButtonClick: () -> Unit,
+    onPermissionGranted: () -> Unit
 ) {
     Scaffold(
-            modifier = modifier,
-            topBar = {
-                VenuesTopBar(
-                        title = stringResource(id = R.string.nearby_venues_title),
-                        subTitle = stringResource(id = R.string.nearby_venues_sub_title),
-                        action = {
-                            Icon(
-                                    modifier = Modifier
-                                            .clickable(onClick = onRefreshButtonClick)
-                                            .padding(paddingMedium),
-                                    imageVector = Icons.Default.Refresh,
-                                    contentDescription = null,
-                                    tint = colorScheme.primary
-                            )
-                        }
-                )
-            },
-            content = { padding ->
-                NearbyVenuesContent(
-                        modifier = modifier.padding(padding),
-                        uiState = uiState,
-                        onRetryButtonClick = onRetryButtonClick,
-                        onPermissionGranted = onPermissionGranted
-                )
-            }
+        modifier = modifier,
+        topBar = {
+            VenuesTopBar(
+                title = stringResource(id = R.string.nearby_venues_title),
+                subTitle = stringResource(id = R.string.nearby_venues_sub_title),
+                action = {
+                    Icon(
+                        modifier = Modifier
+                            .clickable(onClick = onRefreshButtonClick)
+                            .padding(paddingMedium),
+                        imageVector = Icons.Default.Refresh,
+                        contentDescription = null,
+                        tint = colorScheme.primary
+                    )
+                }
+            )
+        },
+        content = { padding ->
+            NearbyVenuesContent(
+                modifier = modifier.padding(padding),
+                uiState = uiState,
+                onRetryButtonClick = onRetryButtonClick,
+                onPermissionGranted = onPermissionGranted
+            )
+        }
     )
 }
 
 @Composable
 internal fun NearbyVenuesContent(
-        modifier: Modifier = Modifier,
-        uiState: NearbyVenuesUiState,
-        onRetryButtonClick: () -> Unit,
-        onPermissionGranted: () -> Unit
+    modifier: Modifier = Modifier,
+    uiState: NearbyVenuesUiState,
+    onRetryButtonClick: () -> Unit,
+    onPermissionGranted: () -> Unit
 ) {
     when (uiState) {
         is Loading -> LoadingScreen(modifier = modifier)
         is Error -> ErrorScreen(
-                modifier = modifier,
-                text = stringResource(id = R.string.nearby_venues_loading_failed_text),
-                onButtonClick = onRetryButtonClick
+            modifier = modifier,
+            text = stringResource(id = R.string.nearby_venues_loading_failed_text),
+            onButtonClick = onRetryButtonClick
         )
+
         is PermissionError -> NearbyVenuesPermissionContent(
-                modifier = modifier,
-                onPermissionGranted = onPermissionGranted
+            modifier = modifier,
+            onPermissionGranted = onPermissionGranted
         )
+
         is GPSError -> ErrorScreen(
-                modifier = modifier,
-                text = stringResource(id = R.string.nearby_venues_location_disabled),
-                painter = painterResource(id = R.drawable.ic_no_location),
-                onButtonClick = onRetryButtonClick
+            modifier = modifier,
+            text = stringResource(id = R.string.nearby_venues_location_disabled),
+            painter = painterResource(id = R.drawable.ic_no_location),
+            onButtonClick = onRetryButtonClick
         )
 
         is Venues -> if (uiState.venues.isNullOrEmpty()) {
             EmptyScreen(
-                    modifier = modifier,
-                    text = stringResource(id = R.string.nearby_venues_empty_text)
+                modifier = modifier,
+                text = stringResource(id = R.string.nearby_venues_empty_text)
             )
         } else {
             NearbyVenuesVenuesContent(
-                    modifier = modifier,
-                    venues = uiState.venues
+                modifier = modifier,
+                venues = uiState.venues
             )
         }
     }
@@ -130,14 +132,14 @@ internal fun NearbyVenuesContent(
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 internal fun NearbyVenuesPermissionContent(
-        modifier: Modifier = Modifier,
-        onPermissionGranted: () -> Unit
+    modifier: Modifier = Modifier,
+    onPermissionGranted: () -> Unit
 ) {
     val locationPermissions = rememberMultiplePermissionsState(
-            permissions = listOf(
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
+        permissions = listOf(
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+        )
     )
 
     LaunchedEffect(locationPermissions.allPermissionsGranted) {
@@ -148,40 +150,40 @@ internal fun NearbyVenuesPermissionContent(
 
     if (locationPermissions.shouldShowRationale) {
         ErrorScreen(
-                modifier = modifier,
-                text = stringResource(id = R.string.nearby_venues_permission_description),
-                painter = painterResource(id = R.drawable.ic_no_permission),
-                buttonText = stringResource(id = R.string.permission_grant),
-                onButtonClick = {
-                    locationPermissions.launchMultiplePermissionRequest()
-                }
+            modifier = modifier,
+            text = stringResource(id = R.string.nearby_venues_permission_description),
+            painter = painterResource(id = R.drawable.ic_no_permission),
+            buttonText = stringResource(id = R.string.permission_grant),
+            onButtonClick = {
+                locationPermissions.launchMultiplePermissionRequest()
+            }
         )
     } else {
         MessageScreen(
-                modifier = modifier.fillMaxSize(),
-                text = stringResource(id = R.string.nearby_venues_permission_denied_description),
-                painter = painterResource(id = R.drawable.ic_no_permission),
+            modifier = modifier.fillMaxSize(),
+            text = stringResource(id = R.string.nearby_venues_permission_denied_description),
+            painter = painterResource(id = R.drawable.ic_no_permission),
         )
     }
 }
 
 @Composable
 internal fun NearbyVenuesVenuesContent(
-        modifier: Modifier = Modifier,
-        venues: List<Venue>
+    modifier: Modifier = Modifier,
+    venues: List<Venue>
 ) {
     LazyColumn(
-            modifier = modifier.fillMaxSize(),
-            contentPadding = PaddingValues(
-                    horizontal = paddingMedium,
-                    vertical = paddingMedium
-            )
+        modifier = modifier.fillMaxSize(),
+        contentPadding = PaddingValues(
+            horizontal = paddingMedium,
+            vertical = paddingMedium
+        )
     ) {
         items(
-                count = venues.size
+            count = venues.size
         ) { index ->
             VenueListItem(
-                    item = venues[index]
+                item = venues[index]
             )
         }
     }

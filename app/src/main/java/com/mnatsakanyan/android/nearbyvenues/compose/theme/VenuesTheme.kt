@@ -10,14 +10,12 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalContext
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 internal fun VenuesTheme(
-        darkTheme: Boolean = isSystemInDarkTheme(),
-        content: @Composable () -> Unit,
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = if (supportsDynamicTheming()) {
         val context = LocalContext.current
@@ -26,22 +24,11 @@ internal fun VenuesTheme(
         if (darkTheme) darkColorScheme() else lightColorScheme()
     }
 
-    val systemUiColor = rememberSystemUiController()
-    SideEffect {
-        with(systemUiColor) {
-            setStatusBarColor(colorScheme.background)
-            setNavigationBarColor(
-                    color = colorScheme.background,
-                    navigationBarContrastEnforced = false
-            )
-        }
-    }
-
     CompositionLocalProvider {
         MaterialTheme(
-                colorScheme = colorScheme,
-                typography = typography,
-                content = content,
+            colorScheme = colorScheme,
+            typography = typography,
+            content = content,
         )
     }
 }
